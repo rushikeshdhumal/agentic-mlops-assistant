@@ -4,7 +4,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
-**A**dvanced **T**otal **H**olistic **E**nterprise **N**eural **A**rchitecture
+**A**daptive **T**raining & **H**yperparameter **E**xploration **N**atural **A**ssistant
 
 > Agentic MLOps assistant with natural language interface for edge AI optimization. Enables ML engineers to query experiments, orchestrate training runs, and get optimization recommendations through conversational AI.
 
