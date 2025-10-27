@@ -65,7 +65,10 @@ class MLflowClient:
         # Use SQLite database in local storage
         db_path = self.storage_config.project_root / "local_storage" / "sqlite_db"
         db_path.mkdir(parents=True, exist_ok=True)
-        return f"sqlite:///{db_path / 'mlflow.db'}"
+
+        # Convert to proper URI format with forward slashes
+        db_file = (db_path / "mlflow.db").as_posix()
+        return f"sqlite:///{db_file}"
 
     def _get_artifact_location(self) -> str:
         """
@@ -74,7 +77,7 @@ class MLflowClient:
         Uses external storage if available, otherwise local storage.
 
         Returns:
-            Artifact location path.
+            Artifact location URI (file:// format).
         """
         # Check environment variable
         artifact_root = os.getenv("MLFLOW_ARTIFACT_ROOT")
@@ -83,7 +86,19 @@ class MLflowClient:
 
         # Use external storage for artifacts
         artifact_path = self.storage_config.get_storage_path("mlflow_artifacts")
-        return str(artifact_path)
+
+        # Convert to file:// URI format for MLflow
+        from pathlib import Path
+        artifact_uri = Path(artifact_path).as_posix()
+
+        # Ensure proper file:// URI format
+        if not artifact_uri.startswith("file://"):
+            if artifact_uri.startswith("/"):
+                artifact_uri = f"file://{artifact_uri}"
+            else:
+                artifact_uri = f"file:///{artifact_uri}"
+
+        return artifact_uri
 
     def create_experiment(
         self,
@@ -188,7 +203,13 @@ def initialize_mlflow(
     """
     client = MLflowClient(tracking_uri=tracking_uri, artifact_location=artifact_location)
 
-    # Create default experiment
+    # Set environment variable for default artifact location
+    # This ensures MLflow uses the correct artifact root for all operations
+    if not os.getenv("MLFLOW_ARTIFACT_ROOT"):
+        os.environ["MLFLOW_ARTIFACT_ROOT"] = client.artifact_location
+        logger.info(f"Set MLFLOW_ARTIFACT_ROOT to: {client.artifact_location}")
+
+    # Create default experiment with explicit artifact location
     client.get_or_create_experiment(default_experiment)
 
     logger.info("MLflow initialized successfully")

@@ -96,6 +96,8 @@ checkpoints/
 # Documentation builds
 docs/_build/
 site/
+docs/PHASE1_COMPLETE.md
+QUICKSTART.md
 
 # OS files
 Thumbs.db
