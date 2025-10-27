@@ -1,0 +1,107 @@
+# ATHENA MLOps Platform - Git Ignore
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+.claude/
+
+# Jupyter Notebooks
+.ipynb_checkpoints
+*.ipynb
+
+# Environment variables
+.env
+.env.local
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+coverage.xml
+*.cover
+.hypothesis/
+
+# Type checking
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pyre/
+
+# Logs
+logs/
+*.log
+
+# Local storage (large files stored on external drive)
+local_storage/
+mlruns/
+data/
+models/
+
+# MLflow
+mlruns/
+mlartifacts/
+
+# Chroma vector store
+chroma_db/
+
+# Ollama models (stored on external drive)
+ollama_models/
+
+# Model checkpoints (stored on external drive)
+checkpoints/
+*.pth
+*.pt
+*.ckpt
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+
+# Documentation builds
+docs/_build/
+site/
+
+# OS files
+Thumbs.db
+desktop.ini
+
+# Symlinks (these point to external storage)
+/data
+/mlruns
+/models
