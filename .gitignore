@@ -96,8 +96,13 @@ checkpoints/
 # Documentation builds
 docs/_build/
 site/
-docs/PHASE1_COMPLETE.md
+# Internal/Progress documentation (not for public GitHub)
+docs/PHASE*.md
+docs/SETUP*.md
+docs/*_COMPLETE.md
+docs/*_PROGRESS.md
 QUICKSTART.md
+*.backup
 
 # OS files
 Thumbs.db
